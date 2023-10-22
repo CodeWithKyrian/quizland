@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none !important;
+}
+
+@layer components {
+    .EasyMDEContainer {
+        @apply mt-2;
+    }
+
+    .EasyMDEContainer .editor-toolbar {
+        @apply dark:text-zinc-300  dark:bg-zinc-800 border-zinc-300 dark:border-zinc-600;
+    }
+
+    .EasyMDEContainer .editor-toolbar.fullscreen {
+        @apply absolute z-[100];
+    }
+
+
+
+    .EasyMDEContainer .CodeMirror {
+        @apply dark:text-zinc-300 dark:caret-zinc-300 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-600;
+    }
+
+    .EasyMDEContainer .CodeMirror.CodeMirror-fullscreen {
+        @apply !absolute;
+    }
+
+    .EasyMDEContainer .editor-preview-side{
+        @apply !absolute;
+    }
+
+    .EasyMDEContainer .editor-statusbar {
+        @apply dark:text-zinc-300 border rounded-b-md dark:bg-zinc-800 border-zinc-300 dark:border-zinc-600;
+    }
+
+    .EasyMDEContainer .editor-toolbar button.active {
+        @apply dark:text-zinc-700;
+    }
+
+    .EasyMDEContainer .editor-toolbar button:hover {
+        @apply dark:text-zinc-700;
+    }
+}

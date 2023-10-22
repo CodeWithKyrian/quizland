@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="logosvg.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.58205364"
+     inkscape:cx="313.54499"
+     inkscape:cy="801.47253"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:snap-global="false" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient9447">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop9443" />
+      <stop
+         style="stop-color:#e2e2e2;stop-opacity:1"
+         offset="1"
+         id="stop9445" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="offset"
+       id="path-effect1753"
+       is_visible="true"
+       lpeversion="1"
+       linejoin_type="miter"
+       unit="mm"
+       offset="1"
+       miter_limit="4"
+       attempt_force_join="false"
+       update_on_knot_move="true" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient9447"
+       id="linearGradient18879"
+       gradientUnits="userSpaceOnUse"
+       x1="119.16039"
+       y1="145.67284"
+       x2="118.94182"
+       y2="159.17284"
+       gradientTransform="matrix(1.4914394,0,0,1.4914394,-27.959684,5.9354397)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g18619"
+       inkscape:export-filename="C:\Users\Koshna\Documents\Projects\quizland\frontend\public\img\logo-black.png"
+       inkscape:export-xdpi="265.35699"
+       inkscape:export-ydpi="265.35699">
+      <path
+         style="fill:#ff6600;fill-opacity:1;stroke-width:0.264583"
+         d="m 54.785041,212.00978 c -2.93186,-0.0615 -5.86014,0.62491 -8.53382,1.79575 -1.82519,0.59339 -4.04372,2.09918 -5.51959,3.70418 -3.95815,4.45625 -5.33774,10.60783 -5.11396,16.44061 -0.0569,3.67839 0.23991,7.48703 2.10083,10.74924 0.953,2.34315 2.94248,4.38452 4.83555,5.39148 2.44949,1.09689 4.24447,1.26281 6.40164,1.71187 1.95809,0.094 3.76061,1.35691 4.60462,3.08849 0.97969,1.91498 2.8055,3.93766 5.16836,3.94706 -0.3143,-1.99551 -0.95171,-4.66153 0.65362,-6.4473 2.2913,-2.46666 5.94791,-2.401 8.89212,-3.60902 4.8896,-1.67683 10.0311,-4.26851 12.34642,-9.18295 2.55389,-4.64292 3.82301,-10.63165 1.05375,-15.47737 -3.27819,-6.23504 -10.05201,-9.73638 -16.76537,-10.94925 -3.31628,-0.78387 -6.71535,-1.18151 -10.12417,-1.16279 z"
+         id="path13677" />
+      <g
+         id="g18611">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29.0136px;line-height:1.25;font-family:'Quick Zap';-inkscape-font-specification:'Quick Zap, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#803300;fill-opacity:1;stroke-width:0.725339"
+           x="49.025677"
+           y="243.84776"
+           id="text17470"><tspan
+             sodipodi:role="line"
+             id="tspan17468"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29.0136px;font-family:'Quick Zap';-inkscape-font-specification:'Quick Zap, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#803300;fill-opacity:1;stroke-width:0.725339"
+             x="49.025677"
+             y="243.84776">?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29.0136px;line-height:1.25;font-family:'Quick Zap';-inkscape-font-specification:'Quick Zap, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.725339"
+           x="47.967358"
+           y="243.3186"
+           id="text15748"><tspan
+             sodipodi:role="line"
+             id="tspan15746"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29.0136px;font-family:'Quick Zap';-inkscape-font-specification:'Quick Zap, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.725339"
+             x="47.967358"
+             y="243.3186">?</tspan></text>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.5822px;line-height:1.25;font-family:'Quick Zap';-inkscape-font-specification:'Quick Zap, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#2b1100;fill-opacity:1;stroke-width:0.764548"
+       x="91.653076"
+       y="243.91618"
+       id="text24270"
+       inkscape:export-filename="C:\Users\Koshna\Documents\Projects\quizland\frontend\public\img\logo-black.png"
+       inkscape:export-xdpi="265.35699"
+       inkscape:export-ydpi="265.35699"><tspan
+         sodipodi:role="line"
+         id="tspan24268"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.5822px;font-family:'Quick Zap';-inkscape-font-specification:'Quick Zap, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#2b1100;fill-opacity:1;stroke-width:0.764548"
+         x="91.653076"
+         y="243.91618">QUIZLAND</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.2454px;line-height:1.25;font-family:'Quick Zap';-inkscape-font-specification:'Quick Zap, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6600;fill-opacity:1;stroke-width:0.756133"
+       x="92.264221"
+       y="243.1736"
+       id="text18877"
+       inkscape:export-filename="C:\Users\Koshna\Documents\Projects\quizland\frontend\public\img\logo-black.png"
+       inkscape:export-xdpi="265.35699"
+       inkscape:export-ydpi="265.35699"><tspan
+         sodipodi:role="line"
+         id="tspan18875"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.2454px;font-family:'Quick Zap';-inkscape-font-specification:'Quick Zap, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ff6600;fill-opacity:1;stroke-width:0.756133"
+         x="92.264221"
+         y="243.1736">QUIZLAND</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,41 @@
+# Ignore version control directories
+.git
+.svn
+
+# Ignore development-specific files
+.env
+.env.*
+.dockerignore
+
+# Ignore node.js/npm-related files
+node_modules
+#package.json
+#package-lock.json
+yarn.lock
+
+# Ignore PHPUnit configuration
+phpunit.xml
+
+# Ignore Composer cache and vendor binaries
+vendor
+
+# Ignore IDE-related files and directories
+.idea
+.vscode
+
+# Ignore build and cache directories
+#bootstrap/cache
+public/build
+public/mix-manifest.json
+
+# Ignore user-uploaded files (adjust based on your app's upload directories)
+public/uploads
+
+# Ignore logs and temporary files
+storage/logs
+storage/app/*.log
+storage/framework/*
+!storage/framework/cache
+!storage/framework/sessions
+!storage/framework/views
+!storage/framework/testing
