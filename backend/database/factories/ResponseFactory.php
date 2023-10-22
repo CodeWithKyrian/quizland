@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Question>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Response>
  */
-class QuestionFactory extends Factory
+class ResponseFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,10 @@ class QuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            'body' => $this->faker->sentence
+            'user_id' => 1,
+            'quiz_id' => 1,
+            'question_id' => 1,
+            'option_id' => 1,
         ];
     }
 }

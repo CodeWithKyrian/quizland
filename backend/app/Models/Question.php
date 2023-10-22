@@ -11,15 +11,13 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['subject_id', 'body'];
+    protected $fillable = ['body'];
+
+    public $timestamps = false;
 
     public function options(): HasMany
     {
         return $this->hasMany(Option::class)->inRandomOrder();
     }
 
-    public function subject(): BelongsTo
-    {
-        return $this->belongsTo(Subject::class);
-    }
 }

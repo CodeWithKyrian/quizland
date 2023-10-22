@@ -7,31 +7,34 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Test extends Model
+class Quiz extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'program_id',
         'title',
-        'subject_id',
+        'description',
+        'slug',
         'duration',
         'base_score',
         'pass_mark',
-        'starts_at',
-        'ends_at'
+        'started_at',
+        'ended_at',
+    ];
+
+    protected $casts = [
+        'started_at' => 'datetime',
+        'ended_at' => 'datetime',
     ];
 
     public $timestamps = false;
 
-    protected $casts = [
-        'starts_at' => 'datetime',
-        'ends_at' => 'datetime',
-    ];
-
-    public function subject(): BelongsTo
+    public function program(): BelongsTo
     {
-        return $this->belongsTo(Subject::class);
+        return $this->belongsTo(Program::class);
     }
 
     public function questions(): BelongsToMany
@@ -39,8 +42,18 @@ class Test extends Model
         return $this->belongsToMany(Question::class);
     }
 
-    public function answers(): HasMany
+    public function results(): HasMany
     {
         return $this->hasMany(Result::class);
+    }
+
+    public function result(): HasOne
+    {
+        return $this->hasOne(Result::class);
+    }
+
+    public function responses(): HasMany
+    {
+        return $this->hasMany(Response::class);
     }
 }

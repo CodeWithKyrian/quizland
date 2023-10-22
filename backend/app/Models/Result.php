@@ -9,26 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Result extends Model
 {
-    protected $fillable = ['user_id', 'test_id', 'values', 'score', 'ends_at'];
+    protected $fillable = ['user_id', 'quiz_id', 'score', 'finished_at'];
 
-    protected $casts = [
-        'values' => AsCollection::class,
-        'ends_at' => 'datetime',
-    ];
-
-    public function subject(): BelongsTo
+    public function quiz(): BelongsTo
     {
-        return $this->belongsTo(Subject::class);
-    }
-
-    public function test(): BelongsTo
-    {
-        return $this->belongsTo(Test::class);
+        return $this->belongsTo(Quiz::class);
     }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
 }

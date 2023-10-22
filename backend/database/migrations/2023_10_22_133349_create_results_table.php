@@ -13,10 +13,9 @@ return new class extends Migration {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('test_id')->constrained()->cascadeOnDelete();
-            $table->json('values');
-            $table->float('score')->default(0);
-            $table->timestamp('ends_at');
+            $table->foreignId('quiz_id')->constrained()->cascadeOnDelete();
+            $table->decimal('score', 5, 2)->default(0);
+            $table->timestamp('finished_at')->nullable();
             $table->timestamps();
         });
     }

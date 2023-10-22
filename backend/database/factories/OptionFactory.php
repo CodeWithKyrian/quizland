@@ -23,9 +23,9 @@ class OptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'question_id' => $this->faker->numberBetween(1, 20),
-            'body' => $this->faker->text(100),
-            'is_correct' => $this->faker->boolean(25),
+            'question_id' => fake()->numberBetween(1, 20),
+            'body' => fake()->text(100),
+            'is_correct' => fake()->boolean(25),
         ];
     }
 }

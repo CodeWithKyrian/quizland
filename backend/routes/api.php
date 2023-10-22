@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\QuestionController;
-use App\Http\Controllers\API\TestController;
+use App\Http\Controllers\API\QuizController;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +17,10 @@ Route::post('logout', [AuthController::class, 'logout']);
 Route::middleware('api')->group(function () {
     Route::get('user', fn() => new UserResource(auth('api')->user()));
 
-    Route::get('tests', [TestController::class, 'index']);
-    Route::post('tests/{test}/start', [TestController::class, 'start']);
-    Route::post('tests/{test}/submit', [TestController::class, 'submit']);
-    Route::get('tests/{test}/results', [TestController::class, 'results']);
+    Route::get('tests', [QuizController::class, 'index']);
+    Route::post('tests/{test}/start', [QuizController::class, 'start']);
+    Route::post('tests/{test}/submit', [QuizController::class, 'submit']);
+    Route::get('tests/{test}/results', [QuizController::class, 'results']);
 
     Route::apiResource('questions', QuestionController::class);
 });
