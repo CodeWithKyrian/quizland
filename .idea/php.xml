@@ -62,7 +62,6 @@
       <path value="$PROJECT_DIR$/backend/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/backend/vendor/spatie/temporary-directory" />
       <path value="$PROJECT_DIR$/backend/vendor/spatie/image" />
-      <path value="$PROJECT_DIR$/backend/vendor/spatie/laravel-data" />
       <path value="$PROJECT_DIR$/backend/vendor/spatie/laravel-medialibrary" />
       <path value="$PROJECT_DIR$/backend/vendor/spatie/laravel-ignition" />
       <path value="$PROJECT_DIR$/backend/vendor/spatie/backtrace" />
@@ -161,6 +160,7 @@
       <path value="$PROJECT_DIR$/backend/vendor/league/event" />
       <path value="$PROJECT_DIR$/backend/vendor/league/uri" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/psr-http-message-bridge" />
+      <path value="$PROJECT_DIR$/backend/vendor/spatie/laravel-query-builder" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
