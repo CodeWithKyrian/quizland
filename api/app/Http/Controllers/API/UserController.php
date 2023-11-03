@@ -23,7 +23,7 @@ class UserController extends Controller
         return UserResource::collection($users);
     }
 
-    public function show(?User $user)
+    public function show(?User $user = null)
     {
         $user ??= request()->user();
 
@@ -32,7 +32,7 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    public function notifications(?User $user)
+    public function notifications(?User $user = null)
     {
         $user ??= request()->user();
 
@@ -41,7 +41,7 @@ class UserController extends Controller
         return response()->json($user->notifications);
     }
 
-    public function update(UserUpdateRequest $request, ?User $user)
+    public function update(UserUpdateRequest $request, ?User $user = null)
     {
         $user ??= request()->user();
 
@@ -52,7 +52,7 @@ class UserController extends Controller
         return response()->json(['message' => 'User updated successfully']);
     }
 
-    public function updatePassword(UpdatePasswordRequest $request, ?User $user)
+    public function updatePassword(UpdatePasswordRequest $request, ?User $user = null)
     {
         $user ??= request()->user();
 

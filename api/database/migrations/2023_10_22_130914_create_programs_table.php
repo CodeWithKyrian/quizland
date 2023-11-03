@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('creator_id')->constrained('users')->cascadeOnDelete();
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description')->nullable();

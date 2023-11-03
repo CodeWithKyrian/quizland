@@ -9,13 +9,14 @@ use App\Http\Requests\API\RegisterRequest;
 use App\Http\Resources\ErrorResponse;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request): ErrorResponse|JsonResponse
     {
         DB::beginTransaction();
 
@@ -40,13 +41,12 @@ class AuthController extends Controller
 
 
         return response()->json([
-            'user' => new UserResource($user),
             'access_token' => $response->json('access_token'),
             'refresh_token' => $response->json('refresh_token'),
         ]);
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): ErrorResponse|JsonResponse
     {
         $response = Http::post(route('passport.token'), [
             'grant_type' => 'password',
@@ -62,13 +62,12 @@ class AuthController extends Controller
         $user = User::where('email', $request->validated('email'))->first();
 
         return response()->json([
-            'user' => new UserResource($user),
             'access_token' => $response->json('access_token'),
             'refresh_token' => $response->json('refresh_token'),
         ]);
     }
 
-    public function refresh(RefreshRequest $request)
+    public function refresh(RefreshRequest $request): ErrorResponse|JsonResponse
     {
         $response = Http::post(route('passport.token'), [
             'grant_type' => 'refresh_token',
@@ -83,13 +82,12 @@ class AuthController extends Controller
         $user = auth('api')->user();
 
         return response()->json([
-            'user' => new UserResource($user),
             'access_token' => $response->json('access_token'),
             'refresh_token' => $response->json('refresh_token'),
         ]);
     }
 
-    public function logout()
+    public function logout(): JsonResponse
     {
         $user = auth('api')->user();
         $user?->tokens()->where('client_id', config('passport.personal_access_client.id'))->delete();

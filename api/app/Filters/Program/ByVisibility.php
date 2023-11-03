@@ -11,12 +11,14 @@ class ByVisibility
 {
     public function handle(Builder $query, Closure $next)
     {
-        $visibility = request()->input('visibility', 'all');
+        if (!request()->has('visibility')) return $next($query);
+
+        $visibility = request()->input('visibility');
 
         $query = match ($visibility) {
             'private' => $query->where('is_public', false),
-            'public' => $query->where('is_public', true),
-            default => $query,
+            'all' => $query,
+            default => $query->where('is_public', true),
         };
 
         return $next($query);

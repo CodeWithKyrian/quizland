@@ -11,7 +11,11 @@ class BySearch
 {
     public function handle(Builder $query, Closure $next)
     {
-        $search = request()->input('search', '');
+        if (!request()->has('search')) {
+            return $next($query);
+        }
+
+        $search = request()->input('search');
 
         $query = $query
             ->where('name', 'like', "%{$search}%")

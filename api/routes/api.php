@@ -7,17 +7,16 @@ use App\Http\Controllers\API\ProgramController;
 use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\API\UserController;
-use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Route;
 
-Route::get('ping', fn() => response()->json("You have reached the API"));
+Route::get('', fn() => response()->json("You have reached the API of QuizLand!", 201));
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('refresh', [AuthController::class, 'refresh']);
 Route::post('logout', [AuthController::class, 'logout']);
 
-Route::middleware('api')->group(function () {
+Route::middleware('auth:api')->group(function () {
 
     Route::get('user', [UserController::class, 'show']);
     Route::put('user', [UserController::class, 'update']);

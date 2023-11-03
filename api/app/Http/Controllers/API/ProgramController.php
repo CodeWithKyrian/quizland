@@ -24,6 +24,7 @@ class ProgramController extends Controller
     public function index(Request $request)
     {
         $programs = Program::query()
+            ->with('creator')
             ->withCount('quizzes', 'enrolledUsers')
             ->filter([ByStatus::class, ByVisibility::class, BySearch::class, ByAccess::class])
             ->orderBy('created_at', 'desc')

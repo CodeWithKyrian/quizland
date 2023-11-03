@@ -19,18 +19,19 @@ class ProgramResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'created_by' => $this->created_by,
-            'creator' => $this->whenLoaded('creator', $this->creator->name),
+            'creator_id' => $this->creator_id,
+            'created_by' => $this->whenLoaded('creator', fn() => $this->creator->name),
             'description' => $this->description,
             'is_public' => $this->is_public,
             'is_published' => $this->is_published,
             'published_at' => $this->published_at->format('D, M j, Y'),
+            'created_at' => $this->created_at->format('D, M j, Y'),
 
-            'enrolled_users' => $this->whenLoaded('enrolledUsers', UserResource::collection($this->enrolledUsers)),
-            'quizzes' => $this->whenLoaded('quizzes', QuizResource::collection($this->quizzes)),
+            'enrolled_users' => UserResource::collection($this->whenLoaded('enrolledUsers')),
+            'quizzes' => QuizResource::collection($this->whenLoaded('quizzes')),
 
-            'enrolled_users_count' => $this->when($this->enrolled_users_count || $this->enrolledUsers, $this->enrolled_users_count || $this->enrolledUsers->count()),
-            'quizzes_count' => $this->when($this->quizzes_count || $this->quizzes, $this->quizzes_count || $this->quizzes->count()),
+            'enrolled_users_count' => $this->enrolled_users_count ?? $this->enrolledUsers->count(),
+            'quizzes_count' => $this->quizzes_count ?? $this->quizzes->count(),
         ];
     }
 }

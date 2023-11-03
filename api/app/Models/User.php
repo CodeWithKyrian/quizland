@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function createdPrograms(): HasMany
     {
-        return $this->hasMany(Program::class, 'creator_id');
+        return $this->hasMany(Program::class, 'created_by');
     }
 
     public function enrolledPrograms(): BelongsToMany

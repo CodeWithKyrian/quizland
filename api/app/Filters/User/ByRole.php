@@ -11,12 +11,15 @@ class ByRole
 {
     public function handle(Builder $query, Closure $next)
     {
-        $role = request()->input('role', 'all');
+        if (!request()->has('role')) {
+            return $next($query);
+        }
+
+        $role = request()->input('role');
 
         $query = match ($role) {
             'admin' => $query->where('is_admin', true),
-            'user' => $query->where('is_admin', false),
-            default => $query,
+            default => $query->where('is_admin', false),
         };
 
         return $next($query);
