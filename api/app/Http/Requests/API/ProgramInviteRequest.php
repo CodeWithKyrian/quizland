@@ -10,7 +10,6 @@ class ProgramInviteRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email'],
-            'program_id' => ['required', 'exists:programs,id'],
         ];
     }
 

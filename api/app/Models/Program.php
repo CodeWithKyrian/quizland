@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Program extends Model
 {
-    use HasFactory, Filterable,UsesQueryBuilder;
+    use HasFactory, Filterable, UsesQueryBuilder;
 
     protected $fillable = [
-        'created_by',
+        'creator_id',
         'title',
         'slug',
         'description',
@@ -34,7 +34,7 @@ class Program extends Model
     {
         parent::boot();
 
-        static::creating(function ($program) {
+        static::saving(function ($program) {
             $program->slug = str($program->title)->slug();
         });
     }

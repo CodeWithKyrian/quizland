@@ -21,12 +21,10 @@ class ProgramStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'created_by' => ['required', 'exists:users'],
+            'creator_id' => ['required', 'exists:users,id'],
             'title' => ['required', 'string', 'min:3', 'max:255'],
             'description' => ['nullable', 'min:3', 'max:255', 'string'],
             'is_public' => ['required', 'boolean'],
-            'is_published' => ['required', 'boolean'],
-            'published_at' => ['nullable', 'date', 'after_or_equal:today'],
         ];
     }
 
@@ -36,7 +34,7 @@ class ProgramStoreRequest extends FormRequest
     public function prepareForValidation(): void
     {
         $this->merge([
-            'created_by' => $this->user()->id,
+            'creator_id' => $this->user('api')->id,
         ]);
     }
 }

@@ -10,6 +10,6 @@ This invitation will expire in {{ $invitation->expires_at->diffForHumans() }} on
 {{ $invitation->expires_at->toDayDateTimeString() }}. If you do not accept the invitation
 before then, you will have to request a new invitation from the program creator.
 
-If you have any questions, please contact the program creator, {{ $program->creator->name }}at
-{{ $program->creator->email }}.
+If you have any questions, please contact the program creator, {{ $invitation->program->creator->name }}at
+{{ $invitation->program->creator->email }}.
 </x-mail::message>

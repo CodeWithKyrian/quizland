@@ -13,6 +13,7 @@ use App\Http\Resources\ProgramResource;
 use App\Mail\ProgramInvitationMail;
 use App\Models\Program;
 use App\Models\ProgramInvitation;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -98,7 +99,10 @@ class ProgramController extends Controller
 
 
         // TODO: Verify this url is working and is sync with the frontend architecture.
-        $url = config('app.frontend_url') . '/programs/' . $program->id . '/enroll?invitation_code=' . $invitation->token;
+        $url = sprintf(
+            "%sprograms/%s/enroll?invitation_code=%s",
+            config('app.frontend_url'), $program->id, $invitation->token
+        );
 
         Mail::to($email)->send(new ProgramInvitationMail($invitation, $url));
 
@@ -108,28 +112,26 @@ class ProgramController extends Controller
     /**
      * Enroll a user to a program
      */
-    public function enroll(Program $program)
+    public function enroll(Request $request, Program $program)
     {
-        $user = auth('api')->user();
+        if ($request->has('user_id')) {
+            $this->authorize('update', $program);
 
-        if (!$program->is_public) {
-            $invitation = ProgramInvitation::query()
-                ->where('user_id', $user->id)
-                ->where('program_id', $program->id)
-                ->first();
+            $user = User::find($request->input('user_id'));
+        } else {
+            $this->authorize('enroll', $program);
 
-            if (!$invitation) {
-                return response()->json(['message' => 'You are not invited to this program'], 403);
-            }
-
-            if ($invitation->expires_at->isPast()) {
-                return response()->json(['message' => 'Your invitation has expired!'], 403);
-            }
+            $user = auth('api')->user();
         }
 
         $user->enroll($program);
 
-        return response()->json(['message' => 'You have been enrolled to this program']);
+        $program->invitations()
+            ->where('email', $user->email)
+            ->where('program_id', $program->id)
+            ->delete();
+
+        return response()->json(['message' => 'User enrolled successfully']);
     }
 
     /**

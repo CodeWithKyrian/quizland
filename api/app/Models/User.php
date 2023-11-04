@@ -66,7 +66,7 @@ class User extends Authenticatable
 
     public function enroll(Program $program): void
     {
-        $this->enrolledPrograms()->attach($program);
+        $this->enrolledPrograms()->syncWithoutDetaching([$program->id]);
     }
 
     public function withdraw(Program $program): void

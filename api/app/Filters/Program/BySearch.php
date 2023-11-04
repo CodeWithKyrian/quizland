@@ -12,12 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 class BySearch
 {
 
-    /**
-     * @param Builder<Program> $query
-     * @param Closure $next
-     * @return mixed
-     */
-    public function handle(Builder $query, Closure $next)
+    public function handle(Builder $query, Closure $next): mixed
     {
         $search = request()->input('search', '');
 

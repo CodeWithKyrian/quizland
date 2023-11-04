@@ -19,13 +19,14 @@ class ProgramResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'slug' => $this->slug,
             'creator_id' => $this->creator_id,
             'created_by' => $this->whenLoaded('creator', fn() => $this->creator->name),
             'description' => $this->description,
             'is_public' => $this->is_public,
             'is_published' => $this->is_published,
-            'published_at' => $this->published_at->format('D, M j, Y'),
-            'created_at' => $this->created_at->format('D, M j, Y'),
+            'published_at' => $this->published_at?->format('D, M j, Y'),
+            'created_at' => $this->created_at?->format('D, M j, Y'),
 
             'enrolled_users' => UserResource::collection($this->whenLoaded('enrolledUsers')),
             'quizzes' => QuizResource::collection($this->whenLoaded('quizzes')),

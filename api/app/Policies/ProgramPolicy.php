@@ -3,8 +3,10 @@
 namespace App\Policies;
 
 use App\Models\Program;
+use App\Models\ProgramInvitation;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class ProgramPolicy
 {
@@ -40,6 +42,28 @@ class ProgramPolicy
     public function restore(User $user, Program $program): bool
     {
         return $program->created_by === $user->id;
+    }
+
+    public function enroll(User $user, Program $program): Response
+    {
+        if ($program->is_public) {
+            return Response::allow();
+        }
+
+        $invitation = ProgramInvitation::query()
+            ->where('user_id', $user->id)
+            ->where('program_id', $program->id)
+            ->first();
+
+        if (is_null($invitation)) {
+            return Response::deny('You are not invited to this program', 403);
+        }
+
+        if ($invitation->expires_at->isPast()) {
+            return Response::deny('Your invitation has expired!', 403);
+        }
+
+        return Response::allow();
     }
 
     public function forceDelete(User $user, Program $program): bool

@@ -14,6 +14,7 @@ class ProgramInvitation extends Model
         'program_id',
         'user_id',
         'email',
+        'token',
         'expires_at',
         'accepted_at',
         'declined_at',
