@@ -89,7 +89,7 @@ class ProgramController extends Controller
      */
     public function invite(ProgramInviteRequest $request, Program $program)
     {
-        $this->authorize('create', $program);
+        $this->authorize('update', $program);
 
         $email = $request->input('email');
 

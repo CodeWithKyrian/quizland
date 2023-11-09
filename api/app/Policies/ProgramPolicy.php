@@ -19,7 +19,7 @@ class ProgramPolicy
 
     public function view(User $user, Program $program): bool
     {
-        return ($program->created_by === $user->id)
+        return ($program->creator_id === $user->id)
             || ($program->is_published && $program->is_public)
             || ($program->enrolledUsers()->where('user_id', $user->id)->exists());
     }
@@ -31,17 +31,17 @@ class ProgramPolicy
 
     public function update(User $user, Program $program): bool
     {
-        return $program->created_by === $user->id;
+        return $program->creator_id === $user->id;
     }
 
     public function delete(User $user, Program $program): bool
     {
-        return $program->created_by === $user->id;
+        return $program->creator_id === $user->id;
     }
 
     public function restore(User $user, Program $program): bool
     {
-        return $program->created_by === $user->id;
+        return $program->creator_id === $user->id;
     }
 
     public function enroll(User $user, Program $program): Response
@@ -51,7 +51,7 @@ class ProgramPolicy
         }
 
         $invitation = ProgramInvitation::query()
-            ->where('user_id', $user->id)
+            ->where('email', $user->email)
             ->where('program_id', $program->id)
             ->first();
 
@@ -68,6 +68,6 @@ class ProgramPolicy
 
     public function forceDelete(User $user, Program $program): bool
     {
-        return $program->created_by === $user->id;
+        return $program->creator_id === $user->id;
     }
 }

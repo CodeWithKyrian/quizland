@@ -11,14 +11,12 @@ class ByStatus
 {
     public function handle(Builder $query, Closure $next)
     {
-        if (!request()->has('status')) return $next($query);
-
-        $status = request()->input('status');
+        $status = request()->input('published');
 
         $query = match ($status) {
-            'all' => $query,
-            'unpublished' => $query->where('is_published', false),
-            default => $query->where('is_published', true),
+            'true' => $query->where('is_published', true),
+            'false' => $query->where('is_published', false),
+            default => $query,
         };
 
         return $next($query);

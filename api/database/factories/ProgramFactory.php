@@ -26,4 +26,47 @@ class ProgramFactory extends Factory
             'published_at' => fake()->dateTime,
         ];
     }
+
+    public function published(): self
+    {
+        return $this->state([
+            'is_published' => true,
+            'published_at' => now(),
+        ]);
+    }
+
+    public function unpublished(): self
+    {
+        return $this->state([
+            'is_published' => false,
+            'published_at' => null,
+        ]);
+    }
+
+    public function publicAndPublished(): self
+    {
+        return $this->state([
+            'is_public' => true,
+            'is_published' => true,
+            'published_at' => now(),
+        ]);
+    }
+
+    public function publicAndUnpublished(): self
+    {
+        return $this->state([
+            'is_public' => true,
+            'is_published' => false,
+            'published_at' => null,
+        ]);
+    }
+
+    public function privateAndPublished(): self
+    {
+        return $this->state([
+            'is_public' => false,
+            'is_published' => true,
+            'published_at' => now(),
+        ]);
+    }
 }

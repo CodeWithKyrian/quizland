@@ -39,4 +39,23 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    public function admin(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_admin' => true,
+            ];
+        });
+    }
+
+    public function creator(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_creator' => true,
+            ];
+        });
+    }
+
 }
