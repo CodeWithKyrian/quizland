@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use App\Enums\ErrorType;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Http\Client\Response;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\JsonResponse;
 
 //use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +22,9 @@ class ErrorResponse implements Responsable
 
     public static function fromResponse(Response $response): self
     {
-        $errorType = match ($response->json('error')) {
+        $responseJson = json_decode($response->getContent(), true);
+
+        $errorType = match ($responseJson['error']) {
             'unsupported_grant_type', 'invalid_grant', 'invalid_request' => ErrorType::InvalidRequestInput,
             'invalid_client' => ErrorType::InvalidClient,
             'access_denied' => ErrorType::NotAuthenticated,
@@ -30,9 +32,9 @@ class ErrorResponse implements Responsable
         };
 
         return new ErrorResponse(
-            $response->json('message'),
+            $responseJson['message'],
             $errorType,
-            $response->status()
+            $response->getStatusCode()
         );
     }
 

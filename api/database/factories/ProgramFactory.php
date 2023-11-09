@@ -18,7 +18,7 @@ class ProgramFactory extends Factory
     public function definition(): array
     {
         return [
-            'created_by' => User::factory(),
+            'creator_id' => User::factory(),
             'title' => fake()->sentence,
             'description' => fake()->paragraph,
             'is_public' => fake()->boolean,

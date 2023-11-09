@@ -12,6 +12,8 @@
       <sourceFolder url="file://$MODULE_DIR$/api/tests/Unit" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/backend/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/backend/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/backend/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/backend/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/api/storage/app" />
       <excludeFolder url="file://$MODULE_DIR$/api/storage/framework" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/_laravel_idea" />
@@ -163,6 +165,15 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/brianium/paratest" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/fidry/cpu-core-counter" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/jean85/pretty-package-versions" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/pestphp/pest" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/pestphp/pest-plugin" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/pestphp/pest-plugin-arch" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/pestphp/pest-plugin-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/phpdocumentor/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/ta-tikoma/phpunit-architecture-test" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

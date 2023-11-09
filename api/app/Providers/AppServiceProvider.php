@@ -23,8 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        JsonResource::withoutWrapping();
         Model::preventLazyLoading(!$this->app->isProduction());
+
         Blade::if('route', function ($route) {
             return request()->route()->named($route);
         });

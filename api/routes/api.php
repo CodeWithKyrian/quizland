@@ -9,12 +9,12 @@ use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('', fn() => response()->json("You have reached the API of QuizLand!", 201));
+Route::get('', fn() => response()->json("You have reached the API of QuizLand!"));
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('refresh', [AuthController::class, 'refresh']);
-Route::post('logout', [AuthController::class, 'logout']);
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
 Route::middleware('auth:api')->group(function () {
 

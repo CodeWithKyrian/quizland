@@ -31,7 +31,9 @@ class ProgramController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate($request->input('per_page', 10));
 
-        return ProgramResource::collection($programs);
+        return ProgramResource::collection($programs)->additional([
+            'message' => 'Programs retrieved successfully'
+        ]);
     }
 
     /**
