@@ -14,7 +14,7 @@ class QuizStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'program_id' => ['required', 'exists:programs'],
+            'program_id' => ['required', 'exists:programs,id'],
             'title' => ['required', 'string', 'min:3', 'max:255'],
             'description' => ['nullable', 'min:3', 'max:255', 'string'],
             'duration' => ['required', 'integer', 'min:10'],
@@ -29,7 +29,7 @@ class QuizStoreRequest extends FormRequest
     {
         return [
             'program_id.required' => 'The program field is required.',
-            'program_id.exists' => 'The selected program is invalid.',
+            'program_id.exists' => 'The selected program does not exist.',
         ];
     }
 }

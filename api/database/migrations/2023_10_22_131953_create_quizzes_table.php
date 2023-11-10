@@ -14,11 +14,12 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->text('description')->nullable();
             $table->string('slug')->unique();
+            $table->text('description')->nullable();
             $table->integer('duration');
             $table->integer('base_score');
             $table->integer('pass_mark');
+            $table->integer('max_attempts')->default(1);
             $table->timestamp('started_at')->nullable();
             $table->timestamp('ended_at')->nullable();
         });

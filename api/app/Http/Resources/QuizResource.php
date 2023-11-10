@@ -18,6 +18,7 @@ class QuizResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
+            'program_id' => $this->program_id,
             'slug' => $this->slug,
             'duration' => $this->convert_duration($this->duration),
             'base_score' => $this->base_score,
@@ -25,14 +26,15 @@ class QuizResource extends JsonResource
             'started_at' => $this->started_at->format('D, M j, Y'),
             'ended_at' => $this->ended_at->format('D, M j, Y'),
 
-            'questions_count' => $this->when($this->questions_count || $this->questions, $this->questions_count || $this->questions->count()),
-            'responses_count' => $this->when($this->responses_count || $this->responses, $this->responses_count || $this->responses->count()),
 
-            'program' => $this->whenLoaded('program', new ProgramResource($this->program)),
-            'questions' => $this->whenLoaded('questions', QuestionResource::collection($this->questions)),
-            'results' => $this->whenLoaded('results', ResultResource::collection($this->results)),
-            'result' => $this->whenLoaded('result', new ResultResource($this->result)),
-            'responses' => $this->whenLoaded('responses', ResponseResource::collection($this->responses)),
+            'program' => new ProgramResource($this->whenLoaded('program')),
+            'questions' => QuestionResource::collection($this->whenLoaded('questions')),
+            'results' => ResultResource::collection($this->whenLoaded('results')),
+            'result' => new ResultResource($this->whenLoaded('result')),
+            'responses' => ResponseResource::collection($this->whenLoaded('responses')),
+
+            'questions_count' => $this->questions_count ?? $this->relationLoaded('questions') ? $this->questions->count() : null,
+            'responses_count' => $this->responses_count ?? $this->relationLoaded('responses') ? $this->responses->count() : null,
         ];
     }
 

@@ -22,6 +22,7 @@ class Quiz extends Model
         'duration',
         'base_score',
         'pass_mark',
+        'max_attempts',
         'started_at',
         'ended_at',
     ];
@@ -32,6 +33,13 @@ class Quiz extends Model
     ];
 
     public $timestamps = false;
+
+    public static function booted(): void
+    {
+        static::saving(function ($quiz) {
+            $quiz->slug = str($quiz->title)->slug();
+        });
+    }
 
     public function program(): BelongsTo
     {

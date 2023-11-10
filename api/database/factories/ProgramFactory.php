@@ -35,7 +35,7 @@ class ProgramFactory extends Factory
         ]);
     }
 
-    public function unpublished(): self
+    public function draft(): self
     {
         return $this->state([
             'is_published' => false,
@@ -52,7 +52,7 @@ class ProgramFactory extends Factory
         ]);
     }
 
-    public function publicAndUnpublished(): self
+    public function publicAndDraft(): self
     {
         return $this->state([
             'is_public' => true,

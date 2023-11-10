@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 use App\Mail\ProgramInvitationMail;
 use App\Models\Program;
 use App\Models\User;
@@ -21,7 +20,7 @@ it('can retrieve a paginated list of all available programs', function () {
         ]);
 });
 
-it('successfully applies the search filter and returns a paginated list of programs', function () {
+it('applies the search filter and returns a paginated list of programs', function () {
     Program::factory()->publicAndPublished()->create(['title' => 'Laravel']);
     Program::factory()->publicAndPublished()->create(['title' => 'Vue.js']);
     Program::factory()->publicAndPublished()->create(['title' => 'React.js']);
@@ -35,7 +34,7 @@ it('successfully applies the search filter and returns a paginated list of progr
         ]);
 });
 
-test('regular user cannot retrieve a list of programs that are not public', function () {
+test('user cannot retrieve a list of programs that are private', function () {
     Program::factory()->privateAndPublished()->create();
 
     actingAs(User::factory()->create())
@@ -44,7 +43,7 @@ test('regular user cannot retrieve a list of programs that are not public', func
         ->assertJsonCount(0, 'data');
 });
 
-test('regular user cannot retrieve a list of programs that are not published', function () {
+test('user cannot retrieve a list of programs that are unpublished', function () {
     Program::factory()->publicAndPublished()->create();
     Program::factory()->privateAndPublished()->create();
 
@@ -54,7 +53,7 @@ test('regular user cannot retrieve a list of programs that are not published', f
         ->assertJsonCount(1, 'data');
 });
 
-test('regular user cannot retrieve private programs that they did not create', function () {
+test('user cannot retrieve private programs that they did not create', function () {
     $user = User::factory()->create();
 
     Program::factory()->privateAndPublished()->create();
@@ -66,7 +65,7 @@ test('regular user cannot retrieve private programs that they did not create', f
         ->assertJsonCount(1, 'data');
 });
 
-test('regular user can retrieve private programs that they enrolled in', function () {
+test('user can retrieve private programs that they enrolled in', function () {
     $user = User::factory()->create();
     $program = Program::factory()->privateAndPublished()->create();
     $user->enroll($program);
@@ -89,7 +88,7 @@ test('admin can retrieve a list of all programs public or private', function () 
 
 test('admin can retrieve published posts only', function () {
     Program::factory()->publicAndPublished()->create();
-    Program::factory()->publicAndUnpublished()->create();
+    Program::factory()->publicAndDraft()->create();
 
     actingAs(User::factory()->admin()->create())
         ->getJson('programs?published=true')
@@ -99,7 +98,7 @@ test('admin can retrieve published posts only', function () {
 
 test('admin can retrieve unpublished programs only', function () {
     Program::factory()->publicAndPublished()->create();
-    Program::factory()->publicAndUnpublished()->create();
+    Program::factory()->publicAndDraft()->create();
 
     actingAs(User::factory()->admin()->create())
         ->getJson('programs?published=false')
@@ -122,7 +121,6 @@ test('unauthenticated user cannot retrieve a single program', function () {
         ->assertStatus(401);
 });
 
-
 it('cannot retrieve a private program details', function () {
     $program = Program::factory()->privateAndPublished()->create();
 
@@ -132,7 +130,7 @@ it('cannot retrieve a private program details', function () {
 });
 
 it('cannot retrieve an unpublished program details', function () {
-    $program = Program::factory()->publicAndUnpublished()->create();
+    $program = Program::factory()->publicAndDraft()->create();
 
     actingAs(User::factory()->create())
         ->getJson("programs/$program->id")
@@ -476,7 +474,7 @@ test('admin can enroll any user to any program', function () {
 
 it('can publish a program', function () {
     $user = User::factory()->creator()->create();
-    $program = Program::factory()->unpublished()->create(['creator_id' => $user->id]);
+    $program = Program::factory()->draft()->create(['creator_id' => $user->id]);
 
     actingAs($user)
         ->postJson("programs/$program->id/publish")
@@ -490,7 +488,7 @@ it('can publish a program', function () {
 
 it('cannot publish a program if they are not the creator', function () {
     $user = User::factory()->creator()->create();
-    $program = Program::factory()->unpublished()->create();
+    $program = Program::factory()->draft()->create();
 
     actingAs($user)
         ->postJson("programs/$program->id/publish")
@@ -500,7 +498,7 @@ it('cannot publish a program if they are not the creator', function () {
 });
 
 it('cannot publish a program if they are not authenticated', function () {
-    $program = Program::factory()->unpublished()->create();
+    $program = Program::factory()->draft()->create();
 
     postJson("programs/$program->id/publish")
         ->assertUnauthorized();
@@ -510,7 +508,7 @@ it('cannot publish a program if they are not authenticated', function () {
 
 test('admin can publish any program', function () {
     $user = User::factory()->admin()->create();
-    $program = Program::factory()->unpublished()->create();
+    $program = Program::factory()->draft()->create();
 
     actingAs($user)
         ->postJson("programs/$program->id/publish")

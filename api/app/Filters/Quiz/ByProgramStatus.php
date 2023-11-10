@@ -16,18 +16,10 @@ class ByProgramStatus
         }
 
         $query->whereHas('program', function ($query) {
-            $query->where('is_published', true);
-        })
-            ->orWhere(function ($query) {
-                $query->whereHas('program', function ($query) {
-                    $query->where('is_published', false);
-                })
-                    ->where(function ($query) {
-                        $query->whereHas('program', function ($query) {
-                            $query->where('creator_id', request()->user()->id);
-                        });
-                    });
-            });
+            $query
+                ->where('is_published', true)
+                ->orWhere('creator_id', request()->user()->id);
+        });
 
         return $next($query);
     }

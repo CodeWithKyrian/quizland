@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('quiz_id')->constrained()->cascadeOnDelete();
+            $table->integer('attempts')->default(1);
             $table->decimal('score', 5, 2)->default(0);
             $table->timestamp('finished_at')->nullable();
             $table->timestamps();

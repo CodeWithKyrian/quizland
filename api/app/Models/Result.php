@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Result extends Model
 {
-    use Filterable;
+    use Filterable, HasFactory;
 
-    protected $fillable = ['user_id', 'quiz_id', 'score', 'finished_at'];
+    protected $fillable = ['user_id', 'quiz_id', 'attempts', 'score', 'finished_at'];
 
     public function quiz(): BelongsTo
     {

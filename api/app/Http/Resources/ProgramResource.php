@@ -31,8 +31,8 @@ class ProgramResource extends JsonResource
             'enrolled_users' => UserResource::collection($this->whenLoaded('enrolledUsers')),
             'quizzes' => QuizResource::collection($this->whenLoaded('quizzes')),
 
-            'enrolled_users_count' => $this->enrolled_users_count ?? $this->enrolledUsers->count(),
-            'quizzes_count' => $this->quizzes_count ?? $this->quizzes->count(),
+            'enrolled_users_count' => $this->enrolled_users_count ?? $this->relationLoaded('enrolledUsers') ? $this->enrolledUsers->count() : null,
+            'quizzes_count' => $this->quizzes_count ?? $this->relationLoaded('quizzes') ? $this->quizzes->count() : null,
         ];
     }
 }

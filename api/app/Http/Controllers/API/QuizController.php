@@ -9,6 +9,7 @@ use App\Filters\Quiz\ByWritten;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\QuizStoreRequest;
 use App\Http\Resources\QuizResource;
+use App\Models\Program;
 use App\Models\Quiz;
 use App\Models\Response;
 use App\Models\Result;
@@ -31,7 +32,9 @@ class QuizController extends Controller
             ])
             ->withCount('questions')->get();
 
-        return QuizResource::collection($quizzes);
+        return QuizResource::collection($quizzes)->additional([
+            'message' => 'Quizzes retrieved successfully'
+        ]);
     }
 
     /**
@@ -39,7 +42,10 @@ class QuizController extends Controller
      */
     public function store(QuizStoreRequest $request)
     {
-        $this->authorize('create', Quiz::class);
+        $this->authorize('create', [
+            Quiz::class,
+            $request->input('program_id')
+        ]);
 
         $quiz = Quiz::create($request->validated());
 
@@ -85,6 +91,16 @@ class QuizController extends Controller
             416,
             'You have already written this quiz'
         );
+
+//        if (!$result->wasRecentlyCreated) {
+//            $result->increment('attempts');
+//
+//            abort_if(
+//                $result->attempts >= $quiz->max_attempts,
+//                416,
+//                "You have already attempted more than allowed"
+//            );
+//        }
 
         $quiz->loadCount('questions');
 

@@ -11,9 +11,8 @@ class ByProgram
 {
     public function handle(Builder $query, Closure $next)
     {
-        $programId = request()->input('program_id');
-
-        if ($programId) {
+        if (request()->has('program_id')) {
+            $programId = request()->input('program_id');
             $query->where('program_id', $programId);
         }
 

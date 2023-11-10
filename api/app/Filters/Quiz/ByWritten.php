@@ -11,14 +11,14 @@ class ByWritten
 {
     public function handle(Builder $query, Closure $next)
     {
-        $written = request()->input('written', 'all');
+        $written = request()->input('written', 'none');
 
         $query = match ($written) {
-            'written' => $query->whereHas('results', function ($query) {
-                $query->where('user_id', auth('api')->id());
+            'true' => $query->whereHas('results', function ($query) {
+                $query->where('user_id', request()->user()->id);
             }),
-            'not_written' => $query->whereDoesntHave('results', function ($query) {
-                $query->where('user_id', auth('api')->id());
+            'false' => $query->whereDoesntHave('results', function ($query) {
+                $query->where('user_id', request()->user()->id);
             }),
             default => $query,
         };
