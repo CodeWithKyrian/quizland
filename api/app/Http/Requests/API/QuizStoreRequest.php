@@ -3,6 +3,7 @@
 namespace App\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class QuizStoreRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class QuizStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'program_id' => ['required', 'exists:programs,id'],
+            'program_id' => Rule::when($this->isMethod('post'), 'required|exists:programs,id'),
             'title' => ['required', 'string', 'min:3', 'max:255'],
             'description' => ['nullable', 'min:3', 'max:255', 'string'],
             'duration' => ['required', 'integer', 'min:10'],

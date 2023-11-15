@@ -33,6 +33,7 @@ class QuizPolicy
             return Response::deny('You are not allowed to create quizzes', 403);
         }
 
+
         $isTheCreator =  $user->createdPrograms()->where('id', $programId)->exists();
 
         if(!$isTheCreator)
@@ -43,18 +44,28 @@ class QuizPolicy
         return Response::allow();
     }
 
-    public function update(User $user, Quiz $quiz): bool
+    public function update(User $user, Quiz $quiz): Response
     {
         $quiz->loadMissing('program');
 
-        return $quiz->program->creator_id === $user->id;
+        if($quiz->program->creator_id === $user->id)
+        {
+            return Response::allow();
+        }
+
+        return Response::deny('You are not allowed to update this quiz', 403);
     }
 
-    public function delete(User $user, Quiz $quiz): bool
+    public function delete(User $user, Quiz $quiz): Response
     {
         $quiz->loadMissing('program');
 
-        return $quiz->program->creator_id === $user->id;
+        if($quiz->program->creator_id === $user->id)
+        {
+            return Response::allow();
+        }
+
+        return Response::deny('You are not allowed to delete this quiz', 403);
     }
 
     public function restore(User $user, Quiz $quiz): bool

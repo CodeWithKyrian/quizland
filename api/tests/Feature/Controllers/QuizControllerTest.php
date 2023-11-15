@@ -151,8 +151,9 @@ test('user can create a new quiz if they created the program', function () {
         ]);
 });
 
-test('user cannot create a quiz for a program they did not create', function() {
+test('user cannot create a quiz for a program they did not create', closure: function () {
     $program = Program::factory()->create();
+    $this->user->update(['is_creator' => true]);
 
     actingAs($this->user)
         ->postJson('quizzes', [
@@ -168,8 +169,84 @@ test('user cannot create a quiz for a program they did not create', function() {
         ->assertForbidden();
 });
 
-test('user cannot update a quiz they did not create', function() {
+test('user cannot update a quiz they did not create', function () {
+    $program = Program::factory()->create();
+    $quiz = Quiz::factory()->create(['program_id' => $program->id]);
+    $this->user->update(['is_creator' => true]);
 
+    actingAs($this->user)
+        ->putJson("quizzes/{$quiz->id}", [
+            'title' => 'New Quiz',
+            'description' => 'This is a new quiz',
+            'duration' => 60,
+            'base_score' => 100,
+            'pass_mark' => 50,
+            'started_at' => now()->addDays(2),
+            'ended_at' => now()->addDays(3)
+        ])
+        ->assertForbidden()
+        ->assertJsonFragment([
+            'message' => 'You are not allowed to update this quiz'
+        ]);
+});
+
+test('user can update a quiz they created', function () {
+    $quiz = Quiz::factory()->create(['program_id' => $this->program->id]);
+    $this->user->update(['is_creator' => true]);
+
+    actingAs($this->user)
+        ->putJson("quizzes/{$quiz->id}", [
+            'title' => 'New Quiz',
+            'description' => 'This is a new quiz',
+            'duration' => 60,
+            'base_score' => 100,
+            'pass_mark' => 50,
+            'started_at' => now()->addDays(2),
+            'ended_at' => now()->addDays(3)
+        ])
+        ->assertOk()
+        ->assertJsonFragment([
+            'message' => 'Quiz updated successfully'
+        ]);
+});
+
+test('user cannot delete a quiz they did not create', function () {
+    $program = Program::factory()->create();
+    $quiz = Quiz::factory()->create(['program_id' => $program->id]);
+    $this->user->update(['is_creator' => true]);
+
+    actingAs($this->user)
+        ->deleteJson("quizzes/{$quiz->id}")
+        ->assertForbidden()
+        ->assertJsonFragment([
+            'message' => 'You are not allowed to delete this quiz'
+        ]);
+});
+
+test('user can delete a quiz they created', function () {
+    $quiz = Quiz::factory()->create(['program_id' => $this->program->id]);
+    $this->user->update(['is_creator' => true]);
+
+    actingAs($this->user)
+        ->deleteJson("quizzes/{$quiz->id}")
+        ->assertOk()
+        ->assertJsonFragment([
+            'message' => 'Quiz deleted successfully'
+        ]);
+});
+
+test('user cannot start a quiz before the start date', function () {
+    $quiz = Quiz::factory()->create([
+        'program_id' => $this->program->id,
+        'started_at' => now()->addDays(2),
+        'ended_at' => now()->addDays(3)
+    ]);
+
+    $this->user->enroll($this->program);
+
+    actingAs($this->user)
+        ->postJson("quizzes/{$quiz->id}/start")
+        ->assertForbidden();
 });
 
 
